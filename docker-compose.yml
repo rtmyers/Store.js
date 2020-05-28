@@ -4,12 +4,10 @@ services:
   mongo:
     container_name: mongo
     image: mongo
-    networks:
-      - app-network
     volumes:
       - data:/data/db
     ports:
-      - 27017:27017
+      - "27017:27017"
   api:
     container_name: api
     restart: on-failure
@@ -20,8 +18,6 @@ services:
       - "3000:3000"
     depends_on:
       - mongo
-    networks:
-      - app-network
   app:
     container_name: app
     restart: on-failure
@@ -30,17 +26,15 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
+    depends_on:
+      - api
+      - mongo
     links:
       - api
-    networks:
-      - app-network
+      - mongo
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
-
-networks:
-    app-network:
-        driver: bridge
 
 volumes:
   data:
