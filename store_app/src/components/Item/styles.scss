@@ -1,0 +1,25 @@
+.item {
+    min-width: 100px;
+    min-height: 100px;
+    display: inline-grid;
+    margin: 2rem;
+    text-align: center;
+    padding: 1rem;
+    border-radius: .5rem;
+    border: solid .05rem black;
+    user-select: none;
+}
+.button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border: solid .05rem black;
+    border-radius: .5rem;
+    cursor: pointer;
+    line-height: 2rem;
+    font-size: 1rem;
+    transition: all .1s ease-in-out;
+}
+.button:hover {
+    font-size: 1.1rem;
+}
