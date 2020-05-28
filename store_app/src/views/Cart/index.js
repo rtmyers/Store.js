@@ -6,7 +6,7 @@ import { store } from '../../store'
 import './styles.scss'
 
 export default () => {
-  const { state, state: { cart: { items } }, dispatch } = useContext(store)
+  const { state, dispatch } = useContext(store)
 
   useEffect(() => {
     async function fetchData () {
@@ -39,7 +39,7 @@ export default () => {
     <div className='contain'>
       <Header />
       <div className='cartContain'>
-        {items.map((item, i) => (
+        {state.cart.items.map((item, i) => (
           <Item item={item} key={i} action={e => { removeItem(e) }} type='cart' />
         ))}
       </div>

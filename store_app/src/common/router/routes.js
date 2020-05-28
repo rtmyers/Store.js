@@ -1,5 +1,5 @@
 import React from 'react'
-import Store from '@views/Shop'
+import Shop from '@views/Shop'
 import Cart from '@views/Cart'
 import NotFound from '@views/NotFound'
 
