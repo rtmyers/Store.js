@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
 
-  react-web-base:
-    container_name: store_app
+  app:
+    container_name: app
     build:
       context: .
       dockerfile: Dockerfile

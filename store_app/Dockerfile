@@ -13,4 +13,5 @@ RUN yarn install --silent
 
 COPY . .
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["./ops/entry.sh"]
+CMD ["nginx", "-g", "daemon off;"]

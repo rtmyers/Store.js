@@ -22,12 +22,14 @@ services:
       - "27017:27017"
   app:
     container_name: app
-    restart: on-failure
     build:
       context: ./store_app
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
+    volumes:
+      - './app:/app/store_app'
+      - '/app/store_app/node_modules'
     depends_on:
       - api
     environment:

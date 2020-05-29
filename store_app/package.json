@@ -6,9 +6,12 @@
 	"scripts": {
 		"format": "prettier --write \"src/**/*.js\"",
 		"eslint-fix": "eslint --fix \"src/**/*.js\"",
-		"start": "webpack-dev-server --host 0.0.0.0 --mode development --progress --open",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "webpack --mode production"
+		"dev": "webpack-dev-server --host 0.0.0.0 --mode development --progress --open",
+		"start": "npm run dev",
+		"serve": "http-server ./dist",
+		"test": "jest --coverage --passWithNoTests --collectCoverage",
+		"test:watch": "jest --verbose --watch",
+		"build": "webpack --config webpack.config.babel.js --mode production"
 	},
 	"keywords": [],
 	"author": "Robert Myers",
