@@ -16,7 +16,7 @@ import { CartsService } from 'src/carts/carts.service';
   imports: [
     HealthModule,
     CartsModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/db', { useNewUrlParser: true}),
+    MongooseModule.forRoot('mongodb://mongo:27017/db', { useNewUrlParser: true}),
     CacheModule.register({
       max: 5,
       ttl: 10,
