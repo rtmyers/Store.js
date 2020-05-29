@@ -5,6 +5,8 @@ data-volume
 
 dist
 
+data
+
 node_modules
 
 .DS_Store
