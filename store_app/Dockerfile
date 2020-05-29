@@ -1,14 +1,13 @@
 # base image
 FROM node:12.12.0-slim
-
 # set working directory
 WORKDIR /usr/src/app
-EXPOSE 80
+EXPOSE 5000
 
 # install app dependencies
 RUN apt-get update && apt-get install nginx -y
 
-COPY package.json yarn*.json ./
+COPY package.json yarn.lock ./
 RUN yarn install --silent
 
 COPY . .

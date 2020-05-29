@@ -8,7 +8,7 @@ services:
       context: ./store_api
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - "3000:3000"
     links:
       - mongo
     depends_on:
@@ -26,10 +26,7 @@ services:
       context: ./store_app
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
-    volumes:
-      - '.:/app/store_app'
-      - '/app/store_app/node_modules'
+      - "5000:80"
     depends_on:
       - api
     environment:
