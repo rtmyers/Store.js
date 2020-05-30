@@ -9,3 +9,5 @@ store_api/node_modules/@types/mongoose/index.d.ts
 store_api/node_modules/*
 
 node_modules
+
+package-lock.json
