@@ -1,48 +1,58 @@
-import React, { useEffect, useContext } from 'react'
-import axios from 'axios'
-import Header from '@components/Header'
-import Item from '@components/Item'
-import { store } from '../../store'
-import './styles.scss'
+import React, { useEffect, useContext } from 'react';
+import axios from 'axios';
+import Header from '@components/Header';
+import Item from '@components/Item';
+import { store } from '../../store';
+import './styles.scss';
 
 export default () => {
-  const { state, dispatch } = useContext(store)
+  const {
+    state: { cart, items },
+    dispatch,
+  } = useContext(store);
 
   useEffect(() => {
-    async function fetchData () {
+    async function fetchData() {
       try {
-        const { data } = await axios('http://0.0.0.0:3000/api/v1/carts/:1')
-        if (data) {
-          dispatch({ type: 'SET', cart: { items: [...state.cart.items, ...data] } })
-        }
+        const { data } = await axios('http://0.0.0.0:3000/api/v1/carts');
+        const items = data ? [...cart.items, ...data] : [...cart.items];
+        await dispatch({ type: 'SET', cart: { items } });
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     }
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
-  async function removeItem ({ id }) {
+  async function removeItem({ id }) {
     try {
-      const cartItems = state.cart.items.filter(val => val.id !== id)
-      const { data: { cart } } = await axios.patch(
-        `http://0.0.0.0:3000/api/v1/carts/:${id}`,
-        { cart: cartItems }
-      )
-      dispatch({ type: 'SET', cart: { items: cart } })
+      const cartItems = cart.items.filter(val => val.id !== id);
+      const {
+        data: { items },
+      } = await axios.put('http://0.0.0.0:3000/api/v1/carts', {
+        items: [...cartItems],
+      });
+      dispatch({ type: 'SET', cart: items });
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
   }
 
   return (
-    <div className='contain'>
+    <div className="contain">
       <Header />
-      <div className='cartContain'>
-        {state.cart.items.map((item, i) => (
-          <Item item={item} key={i} action={e => { removeItem(e) }} type='cart' />
+      <div className="cartContain">
+        {cart.items.map((item, i) => (
+          <Item
+            item={item}
+            key={i}
+            action={e => {
+              removeItem(e);
+            }}
+            type="cart"
+          />
         ))}
       </div>
     </div>
-  )
-}
+  );
+};

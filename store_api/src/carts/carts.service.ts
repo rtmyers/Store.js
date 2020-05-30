@@ -1,37 +1,45 @@
-import { Injectable, HttpException } from '@nestjs/common';
-// import { Model } from 'mongoose';
-// import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 import { Carts } from './interfaces/carts.interface';
+import { UpdateCartsDto } from './dto/update-carts.dto';
+// import { CartsSchema } from './schemas/carts.schema';
 
 @Injectable()
 export class CartsService {
-    private readonly carts: Carts[] = [];
+	constructor(@InjectModel('Carts') private cartsModel: Model<Carts>) { }
+	// private readonly carts: Carts[] = [];
 
-    find(): Carts[] {
-        return this.carts;
-    }
+	async findAll(): Promise<Carts[]> {
+		const tt = await this.cartsModel.find().exec();
+		return tt;
+	}
 
-    findById(id): Carts[] {
-        return this.find().filter(c => c.id === id)
-    }
+	async findById(id: string): Promise<Carts> {
+		return await this.cartsModel.findById(id).exec();
+  	}
 
-    create(cart: Carts) {
-        this.carts.push(cart)
-    }
+  	async add(updateCartsDto: UpdateCartsDto): Promise<Carts> {
+		console.log('updateCartsDto', updateCartsDto);
+		// const carts = await this.findAll();
+		const newCart = new this.cartsModel({ items: [ updateCartsDto]});
+		const { items } = newCart;
+		console.log(newCart, items);
+		return await newCart.save();
+	}
 
-    add(id, cartIn): Promise<any> {
-        return new Promise(res => {
-            this.carts.push(cartIn)
-            res({ items: [...this.carts]});
-        })
-    }
+	async create(updateCartsDto: UpdateCartsDto): Promise<Carts> {
+		console.log('updateCartsDtooo', updateCartsDto);
+		const newCart = new this.cartsModel({ items: [ updateCartsDto ]});
+		// await newCart.save();
+		return await newCart.save();
+	}
 
-    remove(id) : Promise<any> {
-        return new Promise(resolve => {
-            const index = this.carts.findIndex(cart => cart.id === id);
-            this.carts.splice(1, index);
-            resolve(this.carts);
-        });
-    }
+
+  async remove(id: string): Promise<any> {
+		const removedCart = await this.cartsModel
+			.findByIdAndRemove(id).exec();
+		return removedCart;
+	}
 
 }

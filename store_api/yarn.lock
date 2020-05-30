@@ -2040,7 +2040,7 @@ compressible@~2.0.16:
   dependencies:
     mime-db ">= 1.43.0 < 2"
 
-compression@1.7.4:
+compression@^1.7.4:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/compression/-/compression-1.7.4.tgz#95523eff170ca57c29a0ca41e6fe131f41e5bb8f"
   integrity sha512-jaSIDzP9pZVS4ZfQ+TzvtiWhdpFhE2RDHz8QJkpX9SIpLq88VueF5jJw6t+6CUQcAoA6t+x89MLrWAqpfDE8iQ==
@@ -4797,10 +4797,10 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
 
-mongoose@^5.9.14:
-  version "5.9.14"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.9.14.tgz#73dff38457c254f6a0eff2741642a62c5138b4c8"
-  integrity sha512-LScxCruQv0YpU/9DasKdThd+3r3PFQbCgesmfa6g0pTDOIiD1A9N9OQsGYrDf+dyUksfLCxJYYF9qpBHLvS1tg==
+mongoose@^5.9.16:
+  version "5.9.16"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.9.16.tgz#6aa688a6b7b444d10f60ac539b92556cae20475e"
+  integrity sha512-b4HNndgh+dacoLE/2SBF3iBBofeaKL+aGVZH7jnPRc2RXRCplX4sfH5sgoz03ryCSXJ+RQNIfqKAADt/ZBzPDA==
   dependencies:
     bson "^1.1.4"
     kareem "2.3.1"
@@ -6568,18 +6568,6 @@ supports-hyperlinks@^2.0.0:
   dependencies:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
-
-swagger-ui-dist@^3.18.1:
-  version "3.25.3"
-  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-3.25.3.tgz#15a985381c6a2120982618cca37363dd8e9071e8"
-  integrity sha512-/8DSx431mdN94t8mIZejhVUdN9r8zM+V1l+VGT0h7smrzYFa9vWi2sLVCg4YfgKgMjXYhU4OKADHPnWkbLb+ZQ==
-
-swagger-ui-express@4.1.4:
-  version "4.1.4"
-  resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-4.1.4.tgz#8b814ad998b850a1cf90e71808d6d0a8a8daf742"
-  integrity sha512-Ea96ecpC+Iq9GUqkeD/LFR32xSs8gYqmTW1gXCuKg81c26WV6ZC2FsBSPVExQP6WkyUuz5HEiR0sEv/HCC343g==
-  dependencies:
-    swagger-ui-dist "^3.18.1"
 
 symbol-observable@1.2.0:
   version "1.2.0"

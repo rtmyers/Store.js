@@ -3,15 +3,12 @@
 	"plugins": [
 		["@babel/plugin-proposal-class-properties", {
 			"loose": false
-		}], "react-hot-loader/babel",
-		"@babel/plugin-transform-regenerator",
+		}], "react-hot-loader/babel", "@babel/plugin-transform-regenerator",
 		["module-resolver", {
 			"alias": {
 				"@helpers": "./src/common/helpers",
-				"@mocks": "./src/common/mocks",
 				"@router": "./src/common/router",
 				"@views": "./src/views",
-				"@hooks": "./src/hooks",
 				"@components": "./src/components",
 				"@src": "./src/"
 			}

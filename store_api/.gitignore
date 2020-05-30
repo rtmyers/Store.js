@@ -1,17 +1,12 @@
 # Created by https://www.gitignore.io/api/node,linux,macos,windows,intellij,webstorm,jetbrains,visualstudio,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=node,linux,macos,windows,intellij,webstorm,jetbrains,visualstudio,visualstudiocode
 
-node_modules
-
-.env
-
-.idea
-.vscode
-
-dist
+# Compiled Directory
+dist/
 
 # IntelliJ
 out/
+.idea
 
 ### Linux ###
 *~
@@ -27,9 +22,6 @@ out/
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
-
-/.idea
-package-lock.json
 
 ### macOS ###
 # General
@@ -72,6 +64,7 @@ pids
 *.pid.lock
 
 # Dependency directories
+node_modules
 node_modules/
 jspm_packages/
 
@@ -83,7 +76,6 @@ jspm_packages/
 
 # Yarn Integrity file
 .yarn-integrity
-yarn-lock.json
 
 # dotenv environment variables file
 config.js

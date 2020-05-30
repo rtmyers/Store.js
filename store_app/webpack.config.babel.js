@@ -8,7 +8,7 @@ const resolveAppPath = relativePath => path.resolve(appDirectory, relativePath)
 
 module.exports = {
   entry: './src/index.js',
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   cache: false,
   output: {
     path: path.join(__dirname, '/dist'),

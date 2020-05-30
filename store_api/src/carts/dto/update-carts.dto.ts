@@ -1,7 +1,5 @@
-
-// ./src/carts/dto/update-carts.dto.ts
-
 export class UpdateCartsDto {
+    readonly id: String;
     items: [object];
     readonly created_at: Date;
   }

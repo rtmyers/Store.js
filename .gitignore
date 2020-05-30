@@ -1,12 +1,9 @@
-data-volume
-
 .idea
-.idea/
-
-dist
 
 data
 
-node_modules
-
 .DS_Store
+store_api/node_modules/@types/mongoose/index.d.ts
+store_api/node_modules/@types/mongoose/index.d.ts
+
+store_api/node_modules/*

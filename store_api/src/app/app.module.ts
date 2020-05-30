@@ -37,7 +37,6 @@ import { CartsService } from 'src/carts/carts.service';
       provide: APP_INTERCEPTOR,
       useClass: CacheInterceptor,
     },
-    CartsService
   ],
 })
 export class ApplicationModule {}
