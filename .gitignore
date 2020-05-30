@@ -3,8 +3,7 @@
 data
 
 .DS_Store
-store_api/node_modules/@types/mongoose/index.d.ts
-store_api/node_modules/@types/mongoose/index.d.ts
+
 
 store_api/node_modules/*
 
