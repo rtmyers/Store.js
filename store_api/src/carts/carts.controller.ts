@@ -1,6 +1,5 @@
 import { Controller, Get, Param, Patch, Body, Query, Put } from '@nestjs/common';
 import { CartsService } from './carts.service';
-// import { Carts } from './interfaces/carts.interface';
 import { UpdateCartsDto } from './dto/update-carts.dto';
 
 @Controller('carts')
@@ -9,32 +8,24 @@ export class CartsController {
 
     @Get()
     async getCarts() {
-        return await this.cartsService.findAll();
+      return this.cartsService.findAll();
     }
 
     @Put()
     async create(@Body() updateCartsDto: UpdateCartsDto) {
-        console.log("updateCartsssss", updateCartsDto);
-        const result = await this.cartsService.create(updateCartsDto);
-        console.log("RESULT",  result);
-        return result;
+	    return this.cartsService.create(updateCartsDto);
     }
 
     @Patch('/:id')
     async update(
-            @Param('id') id,
-            @Body() updateCartsDto: UpdateCartsDto
-        ) {
-            console.log("updateCarts", updateCartsDto, id);
-
-            const result = await this.cartsService.add(updateCartsDto);
-
-            console.log("WATWATED", result);
-            const res = {
-                id: result.id,
-                created_at: result.created_at,
-                items: result.items
-            };
-            return res;
-        }
+	    @Param('id') id,
+	    @Body() updateCartsDto: UpdateCartsDto
+    ) {
+        const result = await this.cartsService.add(updateCartsDto);
+        return {
+            _id: '1',
+            created_at: result,
+            items: [result]
+        };
+    }
 }

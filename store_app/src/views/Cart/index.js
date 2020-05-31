@@ -16,7 +16,7 @@ export default () => {
       try {
         const { data } = await axios('http://0.0.0.0:3000/api/v1/carts');
         const items = data ? [...cart.items, ...data] : [...cart.items];
-        await dispatch({ type: 'SET', cart: { items } });
+        await dispatch({ type: 'SET', cart: { items: cartItems } });
       } catch (error) {
         console.error(error);
       }
@@ -27,31 +27,34 @@ export default () => {
   async function removeItem({ id }) {
     try {
       const cartItems = cart.items.filter(val => val.id !== id);
-      const {
-        data: { items },
-      } = await axios.put('http://0.0.0.0:3000/api/v1/carts', {
-        items: [...cartItems],
-      });
-      dispatch({ type: 'SET', cart: items });
+      dispatch({ type: 'SET', cart: { items: cartItems } });
     } catch (err) {
       console.error(err);
     }
   }
 
+  const noItems = cart.items.length < 1;
+  console.log(noItems);
   return (
     <div className="contain">
       <Header />
       <div className="cartContain">
-        {cart.items.map((item, i) => (
-          <Item
-            item={item}
-            key={i}
-            action={e => {
-              removeItem(e);
-            }}
-            type="cart"
-          />
-        ))}
+        {noItems ? (
+          <div>Your Cart Is Empty</div>
+        ) : (
+          <>
+            {cart.items.map((item, i) => (
+              <Item
+                item={item}
+                key={i}
+                action={e => {
+                  removeItem(e);
+                }}
+                type="cart"
+              />
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

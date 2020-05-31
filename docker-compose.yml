@@ -13,6 +13,8 @@ services:
       - mongo
     depends_on:
       - mongo
+    environment:
+      - FROM=docker
   mongo:
     container_name: mongo
     image: mongo

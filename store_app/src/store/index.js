@@ -8,16 +8,9 @@ const StateProvider = ({ children }) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case 'SET':
-        console.log('IN SET', action.cart);
-        console.log('YYYY', { ...state, cart: { items: action.cart } });
-        return { ...state, cart: { items: action.cart } };
+        return { ...state, cart: action.cart };
       case 'UPDATE':
-        console.log(action);
-        const cart = { items: action.cart };
-        console.log('cart', cart);
-        const x = { ...state, cart };
-        console.log('XXX', x);
-        return x;
+        return { ...state, cart: action.cart };
       default:
         throw new Error();
     }
