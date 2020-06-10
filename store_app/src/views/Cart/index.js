@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import axios from 'axios'
 import Header from '@components/Header'
 import Item from '@components/Item'
@@ -6,55 +6,50 @@ import { store } from '../../store'
 import './styles.scss'
 
 export default () => {
-  const {
-    state: { cart, items },
-    dispatch
-  } = useContext(store)
+  const { dispatch, state: { items, cart } } = useContext(store)
 
-  useEffect(() => {
-    async function fetchData () {
-      try {
-        const { data } = await axios('http://0.0.0.0:3000/api/v1/carts')
-        const items = data ? [...cart.items, ...data] : [...cart.items]
-        await dispatch({ type: 'SET', cart: { items } })
-      } catch (error) {
-        console.error(error)
-      }
-    }
-    fetchData()
-  }, [])
-
-  async function removeItem ({ _id }) {
+  const updateCart = async item => {
     try {
-      console.log('REMOVING ID ', _id)
-      const cartItems = cart.items.filter(val => val._id !== _id)
-      console.log(cartItems)
-      const {
-        data: { items }
-      } = await axios.put('http://0.0.0.0:3000/api/v1/carts', {
-        items: [...cartItems]
-      })
-      console.log('SENDING REMOVAL', items)
-      dispatch({ type: 'SET', cart: items })
+      const duplicate = cart.items.filter(_item => _item.id !== item.id)
+      const cartItems = duplicate.length < 1
+        ? { items: [ ...cart.items, item ] }
+        : { items: [ item ] }
+      const response = cart._id
+        ? (await axios.patch(
+          'http://0.0.0.0:3000/api/v1/carts/' + cart._id,
+          cartItems
+        ))
+        : (await axios.put('http://0.0.0.0:3000/api/v1/carts/', cartItems))
+
+      const { data: { _id, items } } = response
+
+      if (items) dispatch({ type: 'UPDATE', cart: items, id: _id })
     } catch (err) {
       console.error(err)
     }
   }
 
+  const itemList = items.filter(item => {
+    for (const key of cart.items) {
+      if (key._id === item._id) return false
+    }
+    return true
+  })
+
   return (
     <div className='contain'>
       <Header />
-      <div className='cartContain'>
-        {cart.items.map((item, i) => (
+      <div>
+        {itemList.map((item, i) => (
           <Item
             item={item}
             key={i}
             action={e => {
-              removeItem(e)
+              updateCart(e)
             }}
-            type='cart'
-          />
-        ))}
+            type='shop'
+            />
+          ))}
       </div>
     </div>
   )

@@ -5,11 +5,13 @@ import {
   CacheInterceptor,
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { APP_INTERCEPTOR } from '@nestjs/core';
-import { CartsModule } from 'src/carts/carts.module';
-import { MongooseModule } from '@nestjs/mongoose';
+import { CartsSchema } from 'src/carts/schemas/carts.schema';
+import { CartsController } from 'src/carts/carts.controller';
 import { CartsService } from 'src/carts/carts.service';
+import { CartsModule } from 'src/carts/carts.module';
 
 @Module({
   imports: [
@@ -29,8 +31,9 @@ import { CartsService } from 'src/carts/carts.service';
       }),
     }),
   ],
-  controllers: [AppController],
+  controllers: [AppController, CartsController],
   providers: [
+		CartsService,
     {
       provide: APP_INTERCEPTOR,
       useClass: CacheInterceptor,

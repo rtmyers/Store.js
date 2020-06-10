@@ -1,7 +1,6 @@
 import { Document } from 'mongoose';
 
 export interface Carts extends Document {
-    readonly id: String;
     items: [{
         _id: String,
         name: String,

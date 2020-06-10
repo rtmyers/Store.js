@@ -2,13 +2,12 @@ import * as mongoose from 'mongoose'
 
 export const CartsSchema = new mongoose.Schema(
   {
-    id: String,
     items: [
       {
         _id: String,
         name: String,
         description: String,
-        price: String,
+        price: { $type: String, required: true },
         image: String,
         type: String
       }

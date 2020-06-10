@@ -30,11 +30,7 @@ export class CartsController {
             const result = await this.cartsService.update(id, updateCartsDto);
 
             console.log("WATWATED", result);
-            const res = {
-                id: result.id,
-                created_at: result.created_at,
-                items: result.items
-            };
+        
             return result;
         }
 }

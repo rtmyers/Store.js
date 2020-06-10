@@ -1,10 +1,10 @@
-import path from 'path'
-import fs from 'fs'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import { CleanWebpackPlugin } from 'clean-webpack-plugin'
+import path from 'path';
+import fs from 'fs';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
-const appDirectory = fs.realpathSync(process.cwd())
-const resolveAppPath = relativePath => path.resolve(appDirectory, relativePath)
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveAppPath = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = {
   entry: './src/index.js',
@@ -14,18 +14,18 @@ module.exports = {
     path: path.join(__dirname, '/dist'),
     publicPath: '/',
     filename: 'bundle.js',
-    pathinfo: true
+    pathinfo: true,
   },
   devServer: {
     port: 80,
     compress: true,
     hot: true,
-    contentBase: resolveAppPath('dist')
+    contentBase: resolveAppPath('dist'),
   },
   plugins: [
     require('autoprefixer'),
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: path.resolve('./src/index.html') })
+    new HtmlWebpackPlugin({ template: path.resolve('./src/index.html') }),
   ],
   module: {
     rules: [
@@ -39,12 +39,12 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               plugins: () => [require('autoprefixer')],
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
-          { loader: 'sass-loader', options: { sourceMap: true } }
-        ]
-      }
-    ]
-  }
-}
+          { loader: 'sass-loader', options: { sourceMap: true } },
+        ],
+      },
+    ],
+  },
+};
