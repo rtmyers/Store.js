@@ -27,7 +27,7 @@ export class CartsController {
         ) {
             console.log("updateCarts", updateCartsDto, id);
 
-            const result = await this.cartsService.add(updateCartsDto);
+            const result = await this.cartsService.update(id, updateCartsDto);
 
             console.log("WATWATED", result);
             const res = {
@@ -35,6 +35,6 @@ export class CartsController {
                 created_at: result.created_at,
                 items: result.items
             };
-            return res;
+            return result;
         }
 }

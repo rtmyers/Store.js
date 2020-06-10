@@ -14,7 +14,7 @@ import { CartsService } from 'src/carts/carts.service';
 @Module({
   imports: [
     CartsModule,
-    MongooseModule.forRoot('mongodb://mongo:27017/db', { useNewUrlParser: true}),
+    MongooseModule.forRoot('mongodb://0.0.0.0:27017/db', { useNewUrlParser: true}),
     CacheModule.register({
       max: 5,
       ttl: 10,

@@ -1,58 +1,61 @@
-import React, { useEffect, useContext } from 'react';
-import axios from 'axios';
-import Header from '@components/Header';
-import Item from '@components/Item';
-import { store } from '../../store';
-import './styles.scss';
+import React, { useEffect, useContext } from 'react'
+import axios from 'axios'
+import Header from '@components/Header'
+import Item from '@components/Item'
+import { store } from '../../store'
+import './styles.scss'
 
 export default () => {
   const {
     state: { cart, items },
-    dispatch,
-  } = useContext(store);
+    dispatch
+  } = useContext(store)
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchData () {
       try {
-        const { data } = await axios('http://0.0.0.0:3000/api/v1/carts');
-        const items = data ? [...cart.items, ...data] : [...cart.items];
-        await dispatch({ type: 'SET', cart: { items } });
+        const { data } = await axios('http://0.0.0.0:3000/api/v1/carts')
+        const items = data ? [...cart.items, ...data] : [...cart.items]
+        await dispatch({ type: 'SET', cart: { items } })
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
     }
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
-  async function removeItem({ id }) {
+  async function removeItem ({ _id }) {
     try {
-      const cartItems = cart.items.filter(val => val.id !== id);
+      console.log('REMOVING ID ', _id)
+      const cartItems = cart.items.filter(val => val._id !== _id)
+      console.log(cartItems)
       const {
-        data: { items },
+        data: { items }
       } = await axios.put('http://0.0.0.0:3000/api/v1/carts', {
-        items: [...cartItems],
-      });
-      dispatch({ type: 'SET', cart: items });
+        items: [...cartItems]
+      })
+      console.log('SENDING REMOVAL', items)
+      dispatch({ type: 'SET', cart: items })
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
   }
 
   return (
-    <div className="contain">
+    <div className='contain'>
       <Header />
-      <div className="cartContain">
+      <div className='cartContain'>
         {cart.items.map((item, i) => (
           <Item
             item={item}
             key={i}
             action={e => {
-              removeItem(e);
+              removeItem(e)
             }}
-            type="cart"
+            type='cart'
           />
         ))}
       </div>
     </div>
-  );
-};
+  )
+}

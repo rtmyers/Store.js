@@ -5,7 +5,7 @@ export const CartsSchema = new mongoose.Schema(
     id: String,
     items: [
       {
-        id: String,
+        _id: String,
         name: String,
         description: String,
         price: String,
