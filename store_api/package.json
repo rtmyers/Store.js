@@ -1,5 +1,5 @@
 {
-	"name": "rtmyers-api",
+	"name": "Store.js",
 	"version": "0.0.1",
 	"description": "",
 	"author": "",
@@ -26,8 +26,7 @@
 		"mongoose": "^5.9.16",
 		"r": "^0.0.5",
 		"reflect-metadata": "^0.1.13",
-		"rimraf": "^3.0.2",
-		"rtmyers-api": "/Users/robertmyers/Projects/temp/Store/store_api"
+		"rimraf": "^3.0.2"
 	},
 	"devDependencies": {
 		"@godaddy/terminus": "4.3.1",
@@ -65,11 +64,7 @@
 		"typescript": "^3.7.4"
 	},
 	"jest": {
-		"moduleFileExtensions": [
-			"js",
-			"json",
-			"ts"
-		],
+		"moduleFileExtensions": ["js", "json", "ts"],
 		"rootDir": "src",
 		"testRegex": ".spec.ts$",
 		"transform": {
