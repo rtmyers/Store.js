@@ -1,0 +1,12 @@
+.idea
+
+data
+
+.DS_Store
+
+
+store_api/node_modules/*
+
+node_modules
+
+package-lock.json

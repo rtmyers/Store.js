@@ -1,0 +1,16 @@
+.cartSummary {
+    border: solid .1rem black;
+    border-top: none;
+}
+.cartSummary div {
+    text-align: center;
+    padding: .6rem 0;
+    width: 100%;
+    font-size: 1.2rem;
+    border-top: .1rem solid black;
+    background: #e1e1e1;
+}
+.empty{
+    padding: 2rem;
+    font-size: 1.6rem;
+}

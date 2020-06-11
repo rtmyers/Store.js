@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  api:
+    container_name: api
+    restart: on-failure
+    build:
+      context: ./store_api
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    environment:
+      - FROM=docker
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+  app:
+    container_name: app
+    build:
+      context: ./store_app
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    environment:
+      - NODE_ENV=production

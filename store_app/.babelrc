@@ -1,0 +1,23 @@
+{
+	"env": {
+		"test": {
+		"plugins": ["@babel/plugin-transform-runtime"]
+		}
+	},
+	"presets": ["@babel/preset-env", "@babel/preset-react"],
+	"plugins": [
+		["@babel/plugin-proposal-class-properties", {
+			"loose": false
+		}], "react-hot-loader/babel", "@babel/plugin-transform-regenerator",
+		["module-resolver", {
+			"alias": {
+				"@helpers": "./src/common/helpers",
+				"@router": "./src/common/router",
+				"@hooks": "./src/hooks",
+				"@views": "./src/views",
+				"@components": "./src/components",
+				"@src": "./src/"
+			}
+		}]
+	]
+}
