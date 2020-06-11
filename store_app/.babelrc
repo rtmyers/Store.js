@@ -8,6 +8,7 @@
 			"alias": {
 				"@helpers": "./src/common/helpers",
 				"@router": "./src/common/router",
+				"@hooks": "./src/hooks",
 				"@views": "./src/views",
 				"@components": "./src/components",
 				"@src": "./src/"

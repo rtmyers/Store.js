@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
+import useCartStorage from '@hooks/cartsStorage'
 import axios from 'axios'
 import Header from '@components/Header'
 import Item from '@components/Item'
@@ -6,50 +7,59 @@ import { store } from '../../store'
 import './styles.scss'
 
 export default () => {
-  const { dispatch, state: { items, cart } } = useContext(store)
+  const {
+    state: { cart },
+    dispatch
+  } = useContext(store)
 
-  const updateCart = async item => {
+  // const [loadedCart, setCart] = useCartStorage(cart, 'cart')
+
+  // console.log(loadedCart, cart._id);
+
+  useEffect(() => {
+    async function fetchData () {
+      try {
+        if (cart._id) {
+          const { data } = await axios(`http://0.0.0.0:3000/api/v1/carts/${cart._id}`)
+          console.log(data);
+          const items = data ? [...cart.items, ...data] : [...cart.items]
+          console.log(items);
+          await dispatch({ type: 'SET', cart: items })
+          setCart(items);
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchData()
+  }, [])
+
+  async function removeItem ({ _id }) {
     try {
-      const duplicate = cart.items.filter(_item => _item.id !== item.id)
-      const cartItems = duplicate.length < 1
-        ? { items: [ ...cart.items, item ] }
-        : { items: [ item ] }
-      const response = cart._id
-        ? (await axios.patch(
-          'http://0.0.0.0:3000/api/v1/carts/' + cart._id,
-          cartItems
-        ))
-        : (await axios.put('http://0.0.0.0:3000/api/v1/carts/', cartItems))
-
-      const { data: { _id, items } } = response
-
-      if (items) dispatch({ type: 'UPDATE', cart: items, id: _id })
+      const cartItems = cart.items.filter(val => val._id !== _id)
+      const { data: { items } } = await axios.put('http://0.0.0.0:3000/api/v1/carts', {
+        items: cartItems
+      })
+      dispatch({ type: 'SET', cart: items })
     } catch (err) {
       console.error(err)
     }
   }
 
-  const itemList = items.filter(item => {
-    for (const key of cart.items) {
-      if (key._id === item._id) return false
-    }
-    return true
-  })
-
   return (
     <div className='contain'>
       <Header />
-      <div>
-        {itemList.map((item, i) => (
+      <div className='cartContain'>
+        {cart.items.map((item, i) => (
           <Item
             item={item}
             key={i}
             action={e => {
-              updateCart(e)
+              removeItem(e)
             }}
-            type='shop'
-            />
-          ))}
+            type='cart'
+          />
+        ))}
       </div>
     </div>
   )

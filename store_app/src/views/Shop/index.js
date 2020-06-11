@@ -14,14 +14,18 @@ export default () => {
   const updateCart = async item => {
     try {
       const duplicate = cart.items.filter(_item => _item.id !== item.id)
-      const cartItems = duplicate.length < 1 ? { items: [...cart.items, item] } : { items: [item] }
-      const response = cart._id
-        ? await axios.patch('http://0.0.0.0:3000/api/v1/carts/' + cart._id, cartItems)
+      const cartItems = duplicate.length < 1
+        ? { items: [...cart.items, item] }
+        : { items: [item] }
+      const response = (cart._id)
+        ? await axios.patch(`http://0.0.0.0:3000/api/v1/carts/${cart._id}`, cartItems)
         : await axios.put('http://0.0.0.0:3000/api/v1/carts/', cartItems)
 
       const { data: { _id, items } } = response
 
-      if (items) dispatch({ type: 'UPDATE', cart: items, id: _id })
+      if (items) {
+        dispatch({ type: 'UPDATE', cart: items, id: _id })
+      }
     } catch (err) {
       console.error(err)
     }
