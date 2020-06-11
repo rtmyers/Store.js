@@ -13,9 +13,9 @@ export class CartsController {
 
     @Get('/:id')
     async getCart(@Param('id') id) {
-        console.log("ID", id);
-        //if (!id) throw new HttpException('Missing ID parameter', 400);
+        if (!id) throw new HttpException('Missing ID parameter', 400);
         // return this.cartsService.findById(id);
+        return this.cartsService.findAll();
         const tt = await this.cartsService.findById(id);
         console.log(tt);
         return tt;
@@ -32,8 +32,6 @@ export class CartsController {
         @Body() updateCartsDto: UpdateCartsDto
     ) {
         if (!id) throw new HttpException('Missing ID parameter', 400);
-        const a = await this.cartsService.update(id, updateCartsDto);  
-        console.log('UPDATE', a)
-        return a;
+        return this.cartsService.update(id, updateCartsDto);
     }
 }

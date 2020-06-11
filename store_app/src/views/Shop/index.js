@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import axios from 'axios'
 import Header from '@components/Header'
 import Item from '@components/Item'
+import useCartStorage from '@hooks/cartsStorage'
 import { store } from '../../store'
 import './styles.scss'
 
@@ -10,6 +11,8 @@ export default () => {
     dispatch,
     state: { items, cart }
   } = useContext(store)
+
+  const [storedCart] = useCartStorage(cart, 'cart')
 
   const updateCart = async item => {
     try {
@@ -20,15 +23,17 @@ export default () => {
       const response = (cart._id)
         ? await axios.patch(`http://0.0.0.0:3000/api/v1/carts/${cart._id}`, cartItems)
         : await axios.put('http://0.0.0.0:3000/api/v1/carts/', cartItems)
-
       const { data: { _id, items } } = response
 
-      if (items) {
-        dispatch({ type: 'UPDATE', cart: items, id: _id })
-      }
+      if (items) dispatch({ type: 'UPDATE', cart: items, id: _id })
     } catch (err) {
       console.error(err)
     }
+  }
+
+  if (!cart._id && storedCart._id) {
+    cart._id = storedCart._id
+    cart.items = storedCart.items
   }
 
   const itemList = items.filter(item => {

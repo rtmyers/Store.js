@@ -1,5 +1,5 @@
 import React from 'react'
-import { string, func, bool, object } from 'prop-types'
+import { string, func, object } from 'prop-types'
 import './styles.scss'
 
 const Item = ({ item, action, type }) => {

@@ -9,15 +9,15 @@ export class CartsService {
 	constructor(@InjectModel('Carts') private cartsModel: Model<Carts>) { }
 
 	async findAll(): Promise<Carts[]> {
-		return this.cartsModel.find().exec();
+		return this.cartsModel.find({ new: true }).exec();
 	}
 
-	async findById(id: string): Promise<Carts> {
-		return this.cartsModel.findById(id, { items : true }).exec();
+	async findById(id): Promise<any> {
+		return this.cartsModel.findById(id, { new: true }).exec();
   	}
 
   	async update(cartsID, updateCartsDto: UpdateCartsDto): Promise<Carts> {
-		return this.cartsModel.findByIdAndUpdate(cartsID, updateCartsDto, { new: true });
+		return this.cartsModel.findByIdAndUpdate(cartsID, updateCartsDto, { new: true }).exec();
 	}
 
 	async create(updateCartsDto: UpdateCartsDto): Promise<Carts> {

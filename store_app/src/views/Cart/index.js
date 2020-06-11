@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react'
-// import useCartStorage from '@hooks/cartsStorage'
+import useCartStorage from '@hooks/cartsStorage'
 import axios from 'axios'
 import Header from '@components/Header'
 import Item from '@components/Item'
@@ -12,20 +12,16 @@ export default () => {
     dispatch
   } = useContext(store)
 
-  // const [loadedCart, setCart] = useCartStorage(cart, 'cart')
-
-  // console.log(loadedCart, cart._id);
+  const [, setCart] = useCartStorage(cart, 'cart')
 
   useEffect(() => {
     async function fetchData () {
       try {
         if (cart._id) {
           const { data } = await axios(`http://0.0.0.0:3000/api/v1/carts/${cart._id}`)
-          console.log(data);
           const items = data ? [...cart.items, ...data] : [...cart.items]
-          console.log(items);
-          await dispatch({ type: 'SET', cart: items })
-          // setCart(items);
+          setCart({ ...cart, items })
+          dispatch({ type: 'UPDATE', cart: items, id: cart._id })
         }
       } catch (error) {
         console.error(error)
@@ -40,7 +36,8 @@ export default () => {
       const { data: { items } } = await axios.put('http://0.0.0.0:3000/api/v1/carts', {
         items: cartItems
       })
-      dispatch({ type: 'SET', cart: items })
+      setCart({ ...cart, items })
+      dispatch({ type: 'UPDATE', cart: items, id: cart._id })
     } catch (err) {
       console.error(err)
     }
