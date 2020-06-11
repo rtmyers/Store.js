@@ -1,6 +1,6 @@
 export default {
   cart: {
-    items: [],
+    items: []
   },
   items: [
     {
@@ -9,7 +9,7 @@ export default {
       discription: 'Great Quality. Rare Issue. CGC Graded.',
       price: '$20000.00',
       image: '',
-      type: 'comic',
+      type: 'comic'
     },
     {
       _id: '2',
@@ -17,7 +17,7 @@ export default {
       discription: 'Great Quality. Rare Issue. CGC Graded.',
       price: '$7000.50',
       image: '',
-      type: 'comic',
+      type: 'comic'
     },
     {
       _id: '3',
@@ -25,79 +25,79 @@ export default {
       discription: 'Great Quality. Rare Issue. CGC Graded.',
       price: '$10000.00',
       image: '',
-      type: 'comic',
+      type: 'comic'
     },
     {
-      id: '4',
+      _id: '4',
       name: 'Amazing Spiderman #129',
       discription: 'Great Quality. Rare Issue. CGC Graded.',
       price: '$20000.00',
       image: '',
-      type: 'comic',
+      type: 'comic'
     },
     {
-      id: '5',
+      _id: '5',
       name: 'Amazing Spiderman #220',
       discription: 'Great Quality. Rare Issue. CGC Graded.',
       price: '$7000.50',
       image: '',
-      type: 'comic',
+      type: 'comic'
     },
     {
-      id: '6',
+      _id: '6',
       name: 'Amazing Spiderman #222',
       discription: 'Great Quality. Rare Issue. CGC Graded.',
       price: '$10000.00',
       image: '',
-      type: 'comic',
+      type: 'comic'
     },
     {
-      id: '7',
+      _id: '7',
       name: 'Amazing Spiderman #129',
       discription: 'Great Quality. Rare Issue. CGC Graded.',
       price: '$20000.00',
       image: '',
-      type: 'comic',
+      type: 'comic'
     },
     {
-      id: '8',
+      _id: '8',
       name: 'Amazing Spiderman #220',
       discription: 'Great Quality. Rare Issue. CGC Graded.',
       price: '$7000.50',
       image: '',
-      type: 'comic',
+      type: 'comic'
     },
     {
-      id: '9',
+      _id: '9',
       name: 'Amazing Spiderman #222',
       discription: 'Great Quality. Rare Issue. CGC Graded.',
       price: '$10000.00',
       image: '',
-      type: 'comic',
+      type: 'comic'
     },
     {
-      id: '10',
+      _id: '10',
       name: 'Amazing Spiderman #129',
       discription: 'Great Quality. Rare Issue. CGC Graded.',
       price: '$20000.00',
       image: '',
-      type: 'comic',
+      type: 'comic'
     },
     {
-      id: '11',
+      _id: '11',
       name: 'Amazing Spiderman #220',
       discription: 'Great Quality. Rare Issue. CGC Graded.',
       price: '$7000.50',
       image: '',
-      type: 'comic',
+      type: 'comic'
     },
     {
-      id: '12',
+      _id: '12',
       name: 'Amazing Spiderman #222',
       discription: 'Great Quality. Rare Issue. CGC Graded.',
       price: '$10000.00',
       image: '',
-      type: 'comic',
-    },
-  ],
-};
+      type: 'comic'
+    }
+  ]
+}
