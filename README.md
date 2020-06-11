@@ -36,5 +36,6 @@ $ git clone https://github.com/rtmyers/Store.js.git Store
 
 ## Install and run the application suite
 ```bash
+$ docker-compose build
 $ docker-compose up
 ```
