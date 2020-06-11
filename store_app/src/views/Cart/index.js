@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react'
-import useCartStorage from '@hooks/cartsStorage'
+// import useCartStorage from '@hooks/cartsStorage'
 import axios from 'axios'
 import Header from '@components/Header'
 import Item from '@components/Item'
@@ -25,7 +25,7 @@ export default () => {
           const items = data ? [...cart.items, ...data] : [...cart.items]
           console.log(items);
           await dispatch({ type: 'SET', cart: items })
-          setCart(items);
+          // setCart(items);
         }
       } catch (error) {
         console.error(error)
