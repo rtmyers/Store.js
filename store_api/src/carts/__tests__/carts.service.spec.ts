@@ -15,7 +15,7 @@ describe('CartsService', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
-    const url = `mongodb://0.0.0.0:27017/db`;
+    const url = `mongodb://mongo:27017/db`;
     await mongoose.connect(url, { useNewUrlParser: true })
     const module: TestingModule = await Test.createTestingModule({
       imports: [ApplicationModule, MongooseModule.forFeature([{ name: 'Carts', schema: CartsSchema }])],
