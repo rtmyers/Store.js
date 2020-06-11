@@ -43,6 +43,11 @@ export default () => {
     }
   }
 
+  const cartTotal = cart.items.reduce((price, val) => {
+    const amount = val.price ? val.price.replace(/[^0-9.,]/g, '') : 0.00
+    return price + parseFloat(amount)
+  }, 0)
+
   return (
     <div className='contain'>
       <Header />
@@ -57,6 +62,20 @@ export default () => {
             type='cart'
           />
         ))}
+        {cart.items.length < 1
+          ? <div className='empty'>Your Cart Is Empty</div>
+          : <div className='cartSummary'>
+            <div># OF ITEMS : <b>{cart.items.length}</b></div>
+            <div>CART :
+              <b>{
+                cartTotal.toLocaleString('en-US', {
+                  style: 'currency',
+                  currency: 'USD'
+                })
+              }
+              </b>
+            </div>
+          </div>}
       </div>
     </div>
   )

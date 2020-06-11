@@ -1,10 +1,18 @@
-import { Controller, Get, Param, Patch, Body, Put, HttpException } from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Param,
+    Patch,
+    Body,
+    Put,
+    HttpException
+} from '@nestjs/common';
 import { CartsService } from './carts.service';
 import { UpdateCartsDto } from './dto/update-carts.dto';
 
 @Controller('carts')
 export class CartsController {
-    constructor(private cartsService: CartsService) {}
+    constructor(private cartsService: CartsService) { }
 
     @Get()
     async getCarts() {
@@ -14,10 +22,7 @@ export class CartsController {
     @Get('/:id')
     async getCart(@Param('id') id) {
         if (!id) throw new HttpException('Missing ID parameter', 400);
-        // return this.cartsService.findById(id);
-        return this.cartsService.findAll();
         const tt = await this.cartsService.findById(id);
-        console.log(tt);
         return tt;
     }
 

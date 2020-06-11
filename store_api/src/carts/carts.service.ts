@@ -9,22 +9,26 @@ export class CartsService {
 	constructor(@InjectModel('Carts') private cartsModel: Model<Carts>) { }
 
 	async findAll(): Promise<Carts[]> {
-		return this.cartsModel.find({ new: true }).exec();
+		return this.cartsModel.find({ new: true}).exec();
 	}
 
 	async findById(id): Promise<any> {
-		return this.cartsModel.findById(id, { new: true }).exec();
-  	}
+		const cart = await this.cartsModel.findById(id, { new: true}).exec();
+		let _cart = [];
+		return _cart; //cart;
+	}
 
-  	async update(cartsID, updateCartsDto: UpdateCartsDto): Promise<Carts> {
-		return this.cartsModel.findByIdAndUpdate(cartsID, updateCartsDto, { new: true }).exec();
+	async update(cartsID, updateCartsDto: UpdateCartsDto): Promise<Carts> {
+		const updatedCart = await this.cartsModel.findByIdAndUpdate(cartsID, updateCartsDto, { new: true }).exec();
+		return updatedCart;
 	}
 
 	async create(updateCartsDto: UpdateCartsDto): Promise<Carts> {
-		return new this.cartsModel(updateCartsDto).save();
+		const newCart = await new this.cartsModel(updateCartsDto).save();
+		return newCart;
 	}
 
-  	async remove(id): Promise<any> {
+	async remove(id): Promise<any> {
 		return this.cartsModel.findByIdAndRemove(id);
 	}
 }
