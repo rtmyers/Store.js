@@ -59,3 +59,6 @@ $ yarn test:e2e
 # test coverage
 $ yarn test:cov
 ```
+
+## DBfix for starting outside of docker
+If you started mongo outside of docker you need to update the mongodb address and replace the domain 'mongo' with '0.0.0.0'
