@@ -8,6 +8,16 @@ Store.js allows a user to add and remove items from a cart.
 	[MongoDB](https://www.mongodb.com/)
 ]
 
+### 4-Part Architecture
+1. Backend Nodejs API 
+	- https://github.com/rtmyers/Store.js/tree/master/store_api
+2. Frontend React App
+	- https://github.com/rtmyers/Store.js/tree/master/store_app
+3. Docker Container
+	- https://github.com/rtmyers/shoppingCart/blob/master/Dockerfile
+	- https://github.com/rtmyers/shoppingCart/blob/master/docker-compose.yml
+4. MongoDB
+
 ## Dependencies
 [Docker](https://www.docker.com/) is required to run the application suite.
 
