@@ -19,7 +19,6 @@ $ yarn install
 ## Running the app
 
 ```bash
-# development w/ watch mode
 $ yarn dev
 ```
 
