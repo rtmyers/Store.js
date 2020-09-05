@@ -25,6 +25,5 @@ $ yarn dev
 ## Test
 
 ```bash
-# unit tests
 $ yarn test
 ```
