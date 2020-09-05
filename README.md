@@ -8,8 +8,6 @@ Store.js allows a user to add and remove items from a cart.
 	[MongoDB](https://www.mongodb.com/)
 ]
 
-For specific guidelines and acceptance criteria, see 'Full-stack-Engineering-Code-Challenge.pdf' in the root directory of this repository.
-
 ## Dependencies
 [Docker](https://www.docker.com/) is required to run the application suite.
 
